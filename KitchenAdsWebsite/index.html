@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <title>KitchenAds - Revolutionary Kitchen Advertising Platform | Connect with Food Enthusiasts</title>
+    <meta name="description" content="Transform your kitchen into an advertising space. Join KitchenAds to connect with brands and earn money while cooking. Innovative kitchen advertising platform for food enthusiasts and brands." />
+    
+    <!-- Canonical Tag -->
+    <link rel="canonical" href="https://kitchenads.io" />
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="KitchenAds - Revolutionary Kitchen Advertising Platform" />
+    <meta property="og:description" content="Transform your kitchen into an advertising space. Connect with brands and earn money while cooking." />
+    <meta property="og:image" content="https://kitchenads.io/og-image.jpg" />
+    <meta property="og:url" content="https://kitchenads.io" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="KitchenAds - Revolutionary Kitchen Advertising Platform" />
+    <meta name="twitter:description" content="Transform your kitchen into an advertising space. Connect with brands and earn money while cooking." />
+    <meta name="twitter:image" content="https://kitchenads.io/og-image.jpg" />
+    
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "KitchenAds",
+        "url": "https://kitchenads.io",
+        "logo": "https://kitchenads.io/logo.png",
+        "description": "Revolutionary kitchen advertising platform connecting food enthusiasts with brands.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "123 Kitchen Street",
+          "addressLocality": "San Francisco",
+          "addressRegion": "CA",
+          "postalCode": "94105",
+          "addressCountry": "US"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+1-555-123-4567",
+          "contactType": "customer service"
+        },
+        "sameAs": [
+          "https://facebook.com/kitchenads",
+          "https://twitter.com/kitchenads",
+          "https://instagram.com/kitchenads",
+          "https://linkedin.com/company/kitchenads"
+        ]
+      }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <!-- Facebook Pixel -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', 'XXXXXXXXXXXXX');
+      fbq('track', 'PageView');
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

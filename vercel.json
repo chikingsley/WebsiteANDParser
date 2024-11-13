@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "buildCommand": "cd KitchenAdsWebsite && npm install && npm run build",
+  "outputDirectory": "KitchenAdsWebsite/dist",
+  "builds": [
+    {
+      "src": "KitchenAdsWebsite/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    },
+    {
+      "src": "SimpleComplexParser/api/telegram.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/telegram",
+      "dest": "/SimpleComplexParser/api/telegram.py",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/bot(.*)",
+      "dest": "/SimpleComplexParser/api/telegram.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/KitchenAdsWebsite/$1"
+    }
+  ],
+  "env": {
+    "TELEGRAM_BOT_TOKEN": "@telegram_bot_token",
+    "NOTION_TOKEN": "@notion_token",
+    "OFFERS_DATABASE_ID": "@offers_database_id",
+    "ADVERTISERS_DATABASE_ID": "@advertisers_database_id",
+    "WEBHOOK_SECRET": "@webhook_secret"
+  }
+}
