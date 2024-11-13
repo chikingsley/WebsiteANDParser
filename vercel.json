@@ -20,40 +20,24 @@
       }
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/_vercel/speed-insights/(.*)",
-      "dest": "/_vercel/speed-insights/$1"
+      "source": "/_vercel/speed-insights/(.*)",
+      "destination": "/_vercel/speed-insights/$1"
     },
     {
-      "src": "/api/telegram",
-      "dest": "/SimpleComplexParser/api/telegram.py",
-      "methods": ["POST"],
-      "headers": {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "POST"
-      }
+      "source": "/api/telegram",
+      "destination": "/SimpleComplexParser/api/telegram.py"
     },
     {
-      "src": "/bot(.*)",
-      "dest": "/SimpleComplexParser/api/telegram.py"
+      "source": "/bot(.*)",
+      "destination": "/SimpleComplexParser/api/telegram.py"
     },
     {
-      "src": "/(.*)",
-      "dest": "/KitchenAdsWebsite/$1"
+      "source": "/(.*)",
+      "destination": "/KitchenAdsWebsite/$1"
     }
   ],
-  "env": {
-    "TELEGRAM_BOT_TOKEN": "@telegram_bot_token",
-    "NOTION_TOKEN": "@notion_token",
-    "OFFERS_DATABASE_ID": "@offers_database_id",
-    "ADVERTISERS_DATABASE_ID": "@advertisers_database_id",
-    "WEBHOOK_SECRET": "@webhook_secret",
-    "MISTRAL_API_KEY": "@mistral_api_key",
-    "VITE_APP_URL": "https://kitchenads.io",
-    "NODE_ENV": "production",
-    "BOT_URL": "https://kitchenads.io/api/telegram"
-  },
   "headers": [
     {
       "source": "/(.*)",
@@ -95,6 +79,17 @@
       ]
     }
   ],
+  "env": {
+    "TELEGRAM_BOT_TOKEN": "@telegram_bot_token",
+    "NOTION_TOKEN": "@notion_token",
+    "OFFERS_DATABASE_ID": "@offers_database_id",
+    "ADVERTISERS_DATABASE_ID": "@advertisers_database_id",
+    "WEBHOOK_SECRET": "@webhook_secret",
+    "MISTRAL_API_KEY": "@mistral_api_key",
+    "VITE_APP_URL": "https://kitchenads.io",
+    "NODE_ENV": "production",
+    "BOT_URL": "https://kitchenads.io/api/telegram"
+  },
   "public": false,
   "cleanUrls": true,
   "trailingSlash": false,
