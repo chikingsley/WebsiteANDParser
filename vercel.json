@@ -95,18 +95,6 @@
       ]
     }
   ],
-  "guides": {
-    "python": {
-      "runtime": "python3.12",
-      "memory": 1024,
-      "maxDuration": 10
-    },
-    "node": {
-      "runtime": "node18.x",
-      "memory": 1024,
-      "maxDuration": 60
-    }
-  },
   "public": false,
   "cleanUrls": true,
   "trailingSlash": false,

@@ -153,3 +153,32 @@ MIT License
 ## Contact
 
 For support, please open an issue in the GitHub repository or contact the maintainers.
+
+## Deployment
+
+### Automated Deployment
+The repository is configured for automatic deployment to Vercel:
+- Website deploys to main domain
+- Telegram bot deploys to API endpoint
+
+### Telegram Bot Setup
+
+1. Install development requirements:
+```bash
+pip install -r requirements.txt
+```
+
+2. Set up webhook using the provided script:
+```bash
+python set_webhook.py
+```
+
+To use a custom URL:
+```bash
+python set_webhook.py --url "https://your-custom-domain.com/api/telegram"
+```
+
+To verify webhook status:
+```bash
+curl "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getWebhookInfo"
+```
