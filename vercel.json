@@ -1,25 +1,38 @@
 {
   "version": 2,
-  "buildCommand": "cd KitchenAdsWebsite && npm install && npm run build",
+  "buildCommand": "cd KitchenAdsWebsite && npm ci && npm run build && cd ../SimpleComplexParser && pip install -r requirements.txt && curl -X POST \"https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/setWebhook\" -H \"Content-Type: application/json\" -d '{\"url\": \"${BOT_URL}\", \"secret_token\": \"${WEBHOOK_SECRET}\"}'",
   "outputDirectory": "KitchenAdsWebsite/dist",
   "builds": [
     {
       "src": "KitchenAdsWebsite/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist"
+        "distDir": "dist",
+        "buildCommand": "npm run build"
       }
     },
     {
       "src": "SimpleComplexParser/api/telegram.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": {
+        "maxDuration": 10,
+        "runtime": "python3.12"
+      }
     }
   ],
   "routes": [
     {
+      "src": "/_vercel/speed-insights/(.*)",
+      "dest": "/_vercel/speed-insights/$1"
+    },
+    {
       "src": "/api/telegram",
       "dest": "/SimpleComplexParser/api/telegram.py",
-      "methods": ["POST"]
+      "methods": ["POST"],
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST"
+      }
     },
     {
       "src": "/bot(.*)",
@@ -35,6 +48,71 @@
     "NOTION_TOKEN": "@notion_token",
     "OFFERS_DATABASE_ID": "@offers_database_id",
     "ADVERTISERS_DATABASE_ID": "@advertisers_database_id",
-    "WEBHOOK_SECRET": "@webhook_secret"
+    "WEBHOOK_SECRET": "@webhook_secret",
+    "MISTRAL_API_KEY": "@mistral_api_key",
+    "VITE_APP_URL": "https://kitchenads.io",
+    "NODE_ENV": "production",
+    "BOT_URL": "https://kitchenads.io/api/telegram"
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*).(?:jpg|jpeg|gif|png|svg|ico|webp)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ],
+  "guides": {
+    "python": {
+      "runtime": "python3.12",
+      "memory": 1024,
+      "maxDuration": 10
+    },
+    "node": {
+      "runtime": "node18.x",
+      "memory": 1024,
+      "maxDuration": 60
+    }
+  },
+  "public": false,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "regions": ["fra1"],
+  "github": {
+    "silent": true,
+    "autoAlias": true
   }
 }
